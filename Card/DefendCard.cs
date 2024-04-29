@@ -11,17 +11,16 @@ public class DefendCard : CardItem
     {
         if (TryUse()==true)
         {
+            int val = int.Parse(data["Arg0"]);
+            AudioManager.Instance.playEffect("healspell");
+            FightManager.Instance.DefenseCount += val;
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").UpdateDef();
 
-         
+            Vector3 pos = Camera.main.transform.position;
+            pos.y = 0;
+            playEffect(pos);
 
-                int val = int.Parse(data["Arg0"]);
-                AudioManager.Instance.playEffect("healspell");
-                FightManager.Instance.DefenseCount += val;
-                UIManager.instance.GetUI<FightUI>("FightUI").UpdateDef();
-
-                Vector3 pos = Camera.main.transform.position;
-                pos.y = 0;
-                playEffect(pos);
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Discard(Card_State_List_Reference_id);
             
         }
         else { base.OnEndDrag(eventData); }

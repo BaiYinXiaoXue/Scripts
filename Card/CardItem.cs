@@ -10,12 +10,15 @@ using UnityEngine.EventSystems;
 public class CardItem : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IBeginDragHandler,IDragHandler,IEndDragHandler
 {
 
-    public Dictionary<string, string> data;//¿¨ÅÆÐÅÏ¢
+    public int Card_State_List_Reference_id;
+    public Dictionary<string, string> data;
 
-public void Init(Dictionary<string,string> data)
+
+    public void Init(Dictionary<string,string> data,int id)
     {
         this.data = data;
 
+        Card_State_List_Reference_id=id;
 
 
     }
@@ -27,7 +30,7 @@ public void Init(Dictionary<string,string> data)
 
 
 
-    //Êó±ê½øÈë
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(1.1f, 0.25f);
@@ -53,7 +56,7 @@ public void Init(Dictionary<string,string> data)
 
     }
 
-    private void Start()//¿¨ÅÆ³õÊ¼»¯
+    private void Start()//ï¿½ï¿½ï¿½Æ³ï¿½Ê¼ï¿½ï¿½
     {
 
         transform.Find("bg").GetComponent<Image>().sprite = Resources.Load<Sprite>(data["BgIcon"]);
@@ -75,8 +78,8 @@ public void Init(Dictionary<string,string> data)
     }
 
 
-    Vector2 initPos;//ÍÏ×§Ç°Î»ÖÃ
-    //ÍÏ×§
+    Vector2 initPos;//ï¿½ï¿½×§Ç°Î»ï¿½ï¿½
+    //ï¿½ï¿½×§
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         initPos = transform.GetComponent<RectTransform>().anchoredPosition;
@@ -117,7 +120,6 @@ public void Init(Dictionary<string,string> data)
 
     public virtual bool TryUse() {
 
-       
             int cost = int.Parse(data["Expend"]);
 
             if (cost > FightManager.Instance.CurPowerCount)
@@ -125,17 +127,14 @@ public void Init(Dictionary<string,string> data)
 
                 AudioManager.Instance.playEffect("lose");
 
-                UIManager.instance.ShowTip("·ÑÓÃ²»×ã", Color.red);
+                UIManager.instance.ShowTip("ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½", Color.red);
                 return false;
             }
             else
             {
 
                 FightManager.Instance.CurPowerCount -= cost;
-                UIManager.instance.GetUI<FightUI>("FightUI").UpdatePower();
-
-                UIManager.instance.GetUI<FightUI>("FightUI").RemoveCard(this);
-
+                UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").UpdatePower();
 
                 return true;
 
@@ -145,7 +144,7 @@ public void Init(Dictionary<string,string> data)
         
 
     }
-    public void playEffect(Vector3 pos)//¿¨ÅÆÊ¹ÓÃºóµÄÌØÐ§
+    public void playEffect(Vector3 pos)//ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãºï¿½ï¿½ï¿½ï¿½Ð§
     {
         GameObject effectObj = Instantiate(Resources.Load(data["Effects"]))as GameObject;
         effectObj.transform.position = pos;

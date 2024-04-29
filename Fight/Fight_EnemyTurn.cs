@@ -6,9 +6,9 @@ public class Fight_EnemyTurn : FightUnit
 {
     public override void Init()
     {
-       //É¾³ýËùÓÐ¿¨ÅÆ
-       UIManager.instance.GetUI<FightUI>("FightUI").removeAllCards();
-        UIManager.instance.ShowTip("µÐ·½»ØºÏ", Color.red, delegate () {
+       //É¾ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½
+       UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Discard_Hand();
+        UIManager.instance.ShowTip("ï¿½Ð·ï¿½ï¿½Øºï¿½", Color.red, delegate () {
             FightManager.Instance.StartCoroutine(EnemyBaseManager.Instance.DoAllEnemyAction());
            
         
