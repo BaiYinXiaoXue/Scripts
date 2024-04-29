@@ -20,13 +20,13 @@ public class UIManager : MonoBehaviour
         uiList = new List<UIBase>();
     }
 
-    public UIBase ShowUI<T>(string uiName) where T :UIBase
+    public UIBase ShowUI<T>(string name) where T :UIBase
         {
-        UIBase ui = Find(uiName);
+        UIBase ui = Find(name);
         if (ui==null) {
-            GameObject obj =Instantiate(Resources.Load("UI/" + uiName), canvasTf) as GameObject;
+            GameObject obj =Instantiate(Resources.Load("UI/"+name), canvasTf) as GameObject;
 
-            obj.name = uiName;
+            obj.name = name;
 
 
             ui = obj.AddComponent<T>();
@@ -86,12 +86,12 @@ public class UIManager : MonoBehaviour
 
 
 
-    public UIBase Find(string uiName)
+    public UIBase Find(string name)
     {
         for (int i = 0; i < uiList.Count; i++)
         {
 
-            if (uiList[i].name == uiName)
+            if (uiList[i].name == name)
             {
                 return uiList[i];
             }
@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public T GetUI<T>(string uiName) where T : UIBase//»ñµÃÄ³¸ö½çÃæµÄ½Å±¾
+    public T GetUI<T>(string uiName) where T : UIBase//ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½Å±ï¿½
     {
         UIBase ui = Find(uiName);
         if (ui != null)
@@ -126,10 +126,10 @@ public class UIManager : MonoBehaviour
 
 
 
-    public GameObject createActionIcon()//ÐÐ¶¯Í¼±ê
+    public GameObject createActionIcon()//ï¿½Ð¶ï¿½Í¼ï¿½ï¿½
     {
         GameObject obj = Instantiate(Resources.Load("UI/actionIcon"),canvasTf)as GameObject;
-        obj.transform.SetAsFirstSibling();//ÔÚ¸¸¼¯µÄÒ»Î»
+        obj.transform.SetAsFirstSibling();//ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»
         return obj;
 
 
@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
     public GameObject createHpItem()
     {
         GameObject obj = Instantiate(Resources.Load("UI/HpItem"), canvasTf) as GameObject;
-        obj.transform.SetAsFirstSibling();//ÔÚ¸¸¼¯µÄÒ»Î»
+        obj.transform.SetAsFirstSibling();//ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Î»
         return obj;
 
 
