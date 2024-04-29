@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 public enum FightType
-{//Ã¶¾Ù
+{//Ã¶ï¿½ï¿½
     None,
     Init,
     Player,
@@ -29,7 +29,7 @@ public class FightManager : MonoBehaviour
     public int CurHp;
 
 
-    public int MaxPowerCount;//×î´óÄÜÁ¿
+    public int MaxPowerCount;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int CurPowerCount;
     public int DefenseCount;
 
@@ -91,7 +91,7 @@ public class FightManager : MonoBehaviour
         
         }
 
-        fighUnit.Init();//³õÊ¼»¯
+        fighUnit.Init();//ï¿½ï¿½Ê¼ï¿½ï¿½
 
 
 
@@ -114,7 +114,7 @@ public class FightManager : MonoBehaviour
 
 
 
-    public void getPlayHit(int hit)//Íæ¼ÒÊÜÉËÂß¼­
+    public void getPlayHit(int hit)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
     {
         if (DefenseCount >= hit)
         {
@@ -129,7 +129,7 @@ public class FightManager : MonoBehaviour
             if (CurHp <= 0)
             {
                 CurHp = 0;
-                //ÇÐ»»µ½ÓÎÏ·Ê§°Ü
+                //ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ï·Ê§ï¿½ï¿½
                 ChangeType(FightType.Loss);
             }
             
@@ -137,8 +137,8 @@ public class FightManager : MonoBehaviour
 
 
 
-        UIManager.instance.GetUI<FightUI>("FightUI").UpdateHP();
-        UIManager.instance.GetUI<FightUI>("FightUI").UpdateDef();
+        UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").UpdateHP();
+        UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").UpdateDef();
     }
    
 

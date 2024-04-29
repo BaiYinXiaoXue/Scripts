@@ -6,47 +6,16 @@ public class Fight_PlayerTurn :FightUnit
 {
     public override void Init()
     {
-        Debug.Log("ÄãµÄ»ØºÏ");
-        UIManager.instance.ShowTip("ÄãµÄ»ØºÏ", Color.green, delegate ()
+        Debug.Log("ï¿½ï¿½Ä»Øºï¿½");
+        UIManager.instance.ShowTip("ï¿½ï¿½Ä»Øºï¿½", Color.green, delegate ()
         {
-            //Ã»ÓÐÅÆÊ±Ï´ÅÆ
-            if (FightCardManager.Instance.hascard()==false)
-            {
-                FightCardManager.Instance.Init();
-                UIManager.instance.GetUI<FightUI>("FightUI").UpdateUsedCardCount();
-
-
-                if (FightCardManager.Instance.cardList.Count> FightUI.tmp) {
-                    UIManager.instance.GetUI<FightUI>("FightUI").createCardItem(FightUI.tmp);
-                    FightUI.tmp = 0;
-                }
-                else
-                {
-                    FightUI.tmp = FightCardManager.Instance.cardList.Count;
-                    UIManager.instance.GetUI<FightUI>("FightUI").createCardItem(FightUI.tmp);
-                    FightUI.tmp = 0;
-
-                }
-
-
-            }
-            //²¹ÄÜÁ¿
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             FightManager.Instance.CurPowerCount = FightManager.Instance.MaxPowerCount;
-            UIManager.instance.GetUI<FightUI>("FightUI").UpdatePower();
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").UpdatePower();
 
+            Debug.Log("ï¿½ï¿½card");
 
-
-
-            Debug.Log("³écard");
-
-
-
-            UIManager.instance.GetUI<FightUI>("FightUI").createCardItem(5);//³éÎåÕÅÅÆ
-
-            UIManager.instance.GetUI<FightUI>("FightUI").UpdateCardItemPos();
-
-            //¸üÐÂ¿¨ÅÆÊýÁ¿
-            UIManager.instance.GetUI<FightUI>("FightUI").UpdateCardCount();
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Draw_Card(5);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             
         });
 

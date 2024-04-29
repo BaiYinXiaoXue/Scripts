@@ -9,14 +9,12 @@ public class FightInit : FightUnit
         FightManager.Instance.Init();
 
 
-        //ÇÐ»»BGM
+        //ï¿½Ð»ï¿½BGM
         AudioManager.Instance.PlayBGM("battle");
         //UI
-        UIManager.instance.ShowUI<FightUI>("FightUI");
+        UIManager.instance.ShowUI<Combat_UI_Data>("Combat_UI_Data");
         //
         EnemyBaseManager.Instance.LoadRes("10001");
-        //³õÊ¼»¯ÅÆ×é
-        FightCardManager.Instance.Init();
 
 
         FightManager.Instance.ChangeType(FightType.Player);

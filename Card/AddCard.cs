@@ -12,32 +12,21 @@ public class AddCard : CardItem
         {
 
 
-            //ÊÇ·ñÓÐ¿¨³é
+            //ï¿½Ç·ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½
             // int val = int.Parse(data["Arg0"]);
-            int val = Random.Range(0, 4);
-
-            if (FightCardManager.Instance.hascard()==true) {
-
-                UIManager.instance.GetUI<FightUI>("FightUI").createCardItem(val);
-                UIManager.instance.GetUI<FightUI>("FightUI").UpdateCardItemPos();
-
-                Vector3 a = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.5f));
-
-                playEffect(a);
-                 
-            }
-            else
-            {
-
-                UIManager.instance.GetUI<FightUI>("FightUI").createCardItem(val);
-                
-
-            }
-
-
-
+            //int val = Random.Range(0, 5);
+            int val = 4;
             
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Draw_Card(val);
+
+            Vector3 a = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2.5f));
+
+            playEffect(a);
+
+            UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Discard(Card_State_List_Reference_id);
+
         }
+        else { base.OnEndDrag(eventData); }
         
     }
 

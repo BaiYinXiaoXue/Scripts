@@ -44,22 +44,22 @@ public class AttackCardItem : CardItem, IPointerDownHandler
         UIManager.instance.ShowUI<LineUI>("LineUI");
 
 
-        //¿ªÊ¼Î»ÖÃ
+        //ï¿½ï¿½Ê¼Î»ï¿½ï¿½
        UIManager.instance.GetUI<LineUI>("LineUI").SetStartPos(transform.GetComponent<RectTransform>().anchoredPosition);///////
 
 
 
-        Cursor.visible = false;//¹ØÊó±ê
-        StopAllCoroutines();//¹Ø±ÕËùÓÐÐ­Í¬³ÌÐò
+        Cursor.visible = false;//ï¿½ï¿½ï¿½ï¿½ï¿½
+        StopAllCoroutines();//ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½Ð­Í¬ï¿½ï¿½ï¿½ï¿½
         //UIManager.instance.CloseUI("LineUI");
-        //ÆôÓÃÐ­Í¬³ÌÐò
+        //ï¿½ï¿½ï¿½ï¿½Ð­Í¬ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(OnMouseDownRight(eventData));
     }
 
     IEnumerator OnMouseDownRight(PointerEventData pData)
     {
         while (true)
-        {//°´ÏÂÊó±êÓÒ¼ü Ìø³öÑ­»·
+        {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
 
             if (Input.GetMouseButton(1))
             {
@@ -75,10 +75,10 @@ public class AttackCardItem : CardItem, IPointerDownHandler
                 out pos
                 ))
             {
-                //½áÊøÎ»ÖÃ
+                //ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
                 UIManager.instance.GetUI<LineUI>("LineUI").SetEndPos(pos);///////////////////
 
-                //ÉäÏß¼ì²â
+                //ï¿½ï¿½ï¿½ß¼ï¿½ï¿½
                 CheckRayToEnemy();
 
 
@@ -90,11 +90,11 @@ public class AttackCardItem : CardItem, IPointerDownHandler
 
 
         }
-        //Ìø³öÑ­»·£¬ÏÔÊ¾Êó±ê
+        //ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
         Cursor.visible = true;
-        UIManager.instance.CloseUI("LineUI");//¹Ø±ÕUI
+        UIManager.instance.CloseUI("LineUI");//ï¿½Ø±ï¿½UI
     }
-    Enemy hitEnemy;//ÉäÏß¼ì²âµ½µÐÈËµÄ½Å±¾
+    Enemy hitEnemy;//ï¿½ï¿½ï¿½ß¼ï¿½âµ½ï¿½ï¿½ï¿½ËµÄ½Å±ï¿½
 
     private void CheckRayToEnemy()
     {
@@ -106,29 +106,31 @@ public class AttackCardItem : CardItem, IPointerDownHandler
 
             hitEnemy = hit.transform.GetComponent<Enemy>();
 
-            hitEnemy.OnSelect();//Ñ¡ÖÐ
-            if (Input.GetMouseButton(0))//°´ÏÂ×ó¼üÊ¹ÓÃ
+            hitEnemy.OnSelect();//Ñ¡ï¿½ï¿½
+            if (Input.GetMouseButton(0))//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
             {
                 StopAllCoroutines();
 
                 Cursor.visible = true;
-                UIManager.instance.CloseUI("LineUI");//¹Ø±ÕUI
+                UIManager.instance.CloseUI("LineUI");//ï¿½Ø±ï¿½UI
 
                 if (TryUse()==true)
                 {
-                    //²¥·ÅÒôÐ§&vfx
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§&vfx
                     playEffect(hitEnemy.transform.position);
 
 
-                    //ÊÜÉË
+                    //ï¿½ï¿½ï¿½ï¿½
                     int val = int.Parse(data["Arg0"]);
                     hitEnemy.Hit(val);
 
+                    UIManager.instance.GetUI<Combat_UI_Data>("Combat_UI_Data").Discard(Card_State_List_Reference_id);
+
                 }
-                //Î´Ñ¡ÔñÊ±
+                //Î´Ñ¡ï¿½ï¿½Ê±
                 hitEnemy.OnUnSelect();
 
-                hitEnemy = null;//ÉèÖÃµÐÈË½Å±¾Îªnull
+                hitEnemy = null;//ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ë½Å±ï¿½Îªnull
 
             }
 
@@ -139,7 +141,7 @@ public class AttackCardItem : CardItem, IPointerDownHandler
         }
         else
         {
-            //Î´Éäµ½¹ÖÎï
+            //Î´ï¿½äµ½ï¿½ï¿½ï¿½ï¿½
             if (hitEnemy != null)
             {
 
